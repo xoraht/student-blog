@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Blog</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+<header class="navbar">
+    <div class="container">
+        <a class="brand" th:href="@{/}">Student Blog</a>
+        <nav class="menu">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/posts}">Posty</a>
+            <a th:href="@{/posts/new}">Dodaj post</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Witaj w Student Blog</h1>
+    <p>Dzisiejsza data: <strong th:text="${today}">2026-03-14</strong></p>
+
+    <section class="card">
+        <h2>Start projektu</h2>
+        <p>To jest strona główna. Następnie dodamy listę postów i CRUD.</p>
+    </section>
+</main>
+</body>
+</html>

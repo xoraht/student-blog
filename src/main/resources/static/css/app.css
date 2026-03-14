@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; color: #1b1b1b; }
+.container { max-width: 920px; margin: 0 auto; padding: 16px; }
+.navbar { background: #111827; color: white; }
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.brand { color: white; text-decoration: none; font-weight: 700; }
+.menu a { color: white; text-decoration: none; margin-left: 12px; opacity: 0.9; }
+.menu a:hover { opacity: 1; text-decoration: underline; }
+.card { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
