@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Posty - Student Blog</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+<header class="navbar">
+    <div class="container">
+        <a class="brand" th:href="@{/}">Student Blog</a>
+        <nav class="menu">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/posts}">Posty</a>
+            <a th:href="@{/posts/new}">Dodaj post</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Posty</h1>
+
+    <section class="card" th:if="${#lists.isEmpty(posts)}">
+        <p>Brak postów.</p>
+    </section>
+
+    <section th:each="p : ${posts}" class="card" style="margin-bottom:12px;">
+        <h2 th:text="${p.title}">Tytuł</h2>
+        <p th:text="${#strings.abbreviate(p.content, 180)}">Treść…</p>
+        <a th:href="@{/posts/{id}(id=${p.id})}">Czytaj więcej</a>
+    </section>
+</main>
+</body>
+</html>

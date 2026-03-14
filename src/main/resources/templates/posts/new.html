@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dodaj post - Student Blog</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+<header class="navbar">
+    <div class="container">
+        <a class="brand" th:href="@{/}">Student Blog</a>
+        <nav class="menu">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/posts}">Posty</a>
+            <a th:href="@{/posts/new}">Dodaj post</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Dodaj post</h1>
+
+    <section class="card">
+        <form th:action="@{/posts}" th:object="${postForm}" method="post">
+            <div style="margin-bottom:12px;">
+                <label>Tytuł</label><br/>
+                <input type="text" th:field="*{title}" style="width:100%; padding:8px;" />
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:#b91c1c;"></div>
+            </div>
+
+            <div style="margin-bottom:12px;">
+                <label>Treść</label><br/>
+                <textarea th:field="*{content}" rows="10" style="width:100%; padding:8px;"></textarea>
+                <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:#b91c1c;"></div>
+            </div>
+
+            <button type="submit" style="padding:10px 14px;">Zapisz</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

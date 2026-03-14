@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="${post.title} + ' - Student Blog'">Post</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+<header class="navbar">
+    <div class="container">
+        <a class="brand" th:href="@{/}">Student Blog</a>
+        <nav class="menu">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/posts}">Posty</a>
+            <a th:href="@{/posts/new}">Dodaj post</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <a th:href="@{/posts}">← Wróć</a>
+
+    <section class="card" style="margin-top:12px;">
+        <h1 th:text="${post.title}">Tytuł</h1>
+        <p style="white-space: pre-wrap" th:text="${post.content}">Treść</p>
+    </section>
+</main>
+</body>
+</html>
