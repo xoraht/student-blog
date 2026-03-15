@@ -19,11 +19,33 @@
 </header>
 
 <main class="container">
-    <a th:href="@{/posts}">← Wróć</a>
+    <a class="btn btn-outline" th:href="@{/posts}">← Wróć</a>
 
     <section class="card" style="margin-top:12px;">
-        <h1 th:text="${post.title}">Tytuł</h1>
-        <p style="white-space: pre-wrap" th:text="${post.content}">Treść</p>
+        <h1 th:text="${post.title}" style="margin-top:0;">Tytuł</h1>
+
+        <div class="meta">
+            <div th:if="${post.createdAt != null}">
+                Utworzono:
+                <span th:text="${#strings.substring(post.createdAt, 0, 16)}">2026-03-14T18:11</span>
+            </div>
+            <div th:if="${post.updatedAt != null}">
+                Zaktualizowano:
+                <span th:text="${#strings.substring(post.updatedAt, 0, 16)}">2026-03-14T18:11</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.id})}">Edytuj</a>
+
+            <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post"
+                  onsubmit="return confirm('Na pewno usunąć post?');"
+                  style="margin:0;">
+                <button class="btn btn-danger" type="submit">Usuń</button>
+            </form>
+        </div>
+
+        <p style="white-space: pre-wrap; margin-bottom:0;" th:text="${post.content}">Treść</p>
     </section>
 </main>
 </body>

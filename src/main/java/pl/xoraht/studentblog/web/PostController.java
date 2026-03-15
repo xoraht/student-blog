@@ -56,4 +56,53 @@ public class PostController {
 
         return "redirect:/posts";
     }
+
+    // --- EDYCJA ---
+
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable long id, Model model) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            return "redirect:/posts";
+        }
+
+        PostForm form = new PostForm();
+        form.setTitle(post.getTitle());
+        form.setContent(post.getContent());
+
+        model.addAttribute("post", post);
+        model.addAttribute("postForm", form);
+        return "posts/edit";
+    }
+
+    @PostMapping("/{id}")
+    public String update(@PathVariable long id,
+                         @Valid @ModelAttribute("postForm") PostForm form,
+                         BindingResult bindingResult,
+                         Model model) {
+
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            return "redirect:/posts";
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("post", post);
+            return "posts/edit";
+        }
+
+        post.setTitle(form.getTitle());
+        post.setContent(form.getContent());
+        postRepository.save(post); // @PreUpdate ustawi updatedAt (jeśli masz)
+
+        return "redirect:/posts/" + post.getId();
+    }
+
+    // --- USUWANIE ---
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable long id) {
+        postRepository.findById(id).ifPresent(postRepository::delete);
+        return "redirect:/posts";
+    }
 }
