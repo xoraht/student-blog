@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dodaj post - Student Blog</title>
+    <title th:text="'Edytuj: ' + ${post.title} + ' - Student Blog'">Edytuj post</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
 </head>
 <body>
@@ -19,20 +19,29 @@
 </header>
 
 <main class="container">
-    <h1>Dodaj post</h1>
+    <a class="btn btn-outline" th:href="@{/posts/{id}(id=${post.id})}">← Wróć</a>
+
+    <h1 style="margin-top:12px;">Edytuj post</h1>
 
     <section class="card">
-        <form th:action="@{/posts}" th:object="${postForm}" method="post">
+        <form th:action="@{/posts/{id}(id=${post.id})}" th:object="${postForm}" method="post">
+
             <div style="margin-bottom:12px;">
                 <label>Tytuł</label><br/>
                 <input type="text" th:field="*{title}" style="width:100%; padding:8px;" />
                 <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:#b91c1c;"></div>
             </div>
 
-            <!-- NOWE POLE: obrazek jako URL -->
             <div style="margin-bottom:12px;">
                 <label>Obrazek (URL)</label><br/>
                 <input type="text" th:field="*{imageUrl}" placeholder="https://..." style="width:100%; padding:8px;" />
+            </div>
+
+            <!-- Podgląd obrazka (opcjonalnie) -->
+            <div th:if="${postForm.imageUrl != null and !#strings.isEmpty(postForm.imageUrl)}"
+                 style="margin-bottom:12px;">
+                <img th:src="${postForm.imageUrl}" alt="Podgląd obrazka"
+                     style="width:100%; max-height:320px; object-fit:cover; border-radius:10px;" />
             </div>
 
             <div style="margin-bottom:12px;">
@@ -41,7 +50,7 @@
                 <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:#b91c1c;"></div>
             </div>
 
-            <button type="submit" style="padding:10px 14px;">Zapisz</button>
+            <button type="submit" style="padding:10px 14px;">Zapisz zmiany</button>
         </form>
     </section>
 </main>

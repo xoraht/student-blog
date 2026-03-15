@@ -13,6 +13,10 @@ public class PostForm {
     @Size(min = 10, max = 10000)
     private String content;
 
+    // NOWE POLE (dajemy max długość jak w encji)
+    @Size(max = 500)
+    private String imageUrl;
+
     public String getTitle() {
         return title;
     }
@@ -27,5 +31,13 @@ public class PostForm {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

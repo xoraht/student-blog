@@ -19,6 +19,10 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
+    // NOWE POLE: URL obrazka
+    @Column(length = 500)
+    private String imageUrl;
+
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
 
@@ -56,6 +60,15 @@ public class Post {
 
     public Post setContent(String content) {
         this.content = content;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Post setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

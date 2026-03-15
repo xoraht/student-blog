@@ -19,6 +19,12 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
+    private static String normalizeImageUrl(String url) {
+        if (url == null) return null;
+        String trimmed = url.trim();
+        return trimmed.isEmpty() ? null : trimmed;
+    }
+
     @GetMapping
     public String list(Model model) {
         model.addAttribute("posts", postRepository.findAll());
@@ -50,7 +56,8 @@ public class PostController {
 
         Post post = new Post()
                 .setTitle(form.getTitle())
-                .setContent(form.getContent());
+                .setContent(form.getContent())
+                .setImageUrl(normalizeImageUrl(form.getImageUrl()));
 
         postRepository.save(post);
 
@@ -69,6 +76,7 @@ public class PostController {
         PostForm form = new PostForm();
         form.setTitle(post.getTitle());
         form.setContent(post.getContent());
+        form.setImageUrl(post.getImageUrl());
 
         model.addAttribute("post", post);
         model.addAttribute("postForm", form);
@@ -93,6 +101,7 @@ public class PostController {
 
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
+        post.setImageUrl(normalizeImageUrl(form.getImageUrl()));
         postRepository.save(post); // @PreUpdate ustawi updatedAt (jeśli masz)
 
         return "redirect:/posts/" + post.getId();
