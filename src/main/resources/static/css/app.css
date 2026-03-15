@@ -1,37 +1,111 @@
-body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; color: #1b1b1b; }
-.container { max-width: 920px; margin: 0 auto; padding: 16px; }
-.navbar { background: #111827; color: white; }
-.navbar .container { display: flex; align-items: center; justify-content: space-between; }
-.brand { color: white; text-decoration: none; font-weight: 700; }
-.menu a { color: white; text-decoration: none; margin-left: 12px; opacity: 0.9; }
-.menu a:hover { opacity: 1; text-decoration: underline; }
-.card { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
-.actions { display: flex; gap: 10px; align-items: center; margin: 12px 0; }
-
-.btn {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 1.2;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#0b1220;
+  color:#e5e7eb;
+  line-height:1.55;
+  overflow-wrap:anywhere;
+  word-break:break-word;
 }
 
-.btn-primary { background: #2563eb; color: white; }
-.btn-primary:hover { background: #1d4ed8; }
+a{color:#93c5fd;text-decoration:none}
+a:hover{text-decoration:underline}
 
-.btn-danger { background: #dc2626; color: white; }
-.btn-danger:hover { background: #b91c1c; }
+.container{max-width:980px;margin:0 auto;padding:18px}
 
-.btn-outline { background: transparent; border-color: #cbd5e1; color: #111827; }
-.btn-outline:hover { background: #f1f5f9; }
-
-.meta {
-  margin: 10px 0 6px 0;
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.4;
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#111827;
+  border-bottom:1px solid #1f2937;
 }
+.navbar .container{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;color:#ffffff;letter-spacing:.2px}
+.menu{display:flex;gap:10px;flex-wrap:wrap}
+.menu a{color:#e5e7eb;padding:6px 10px;border-radius:10px;opacity:.95}
+.menu a:hover{background:#1f2937;text-decoration:none}
+
+.page-title{margin:14px 0 12px; text-align: center;}
+.section-gap{margin-top:12px}
+
+.card{
+  background:#0f172a;
+  border:1px solid #1f2937;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 10px 24px #000000;
+}
+.card + .card{margin-top:12px}
+
+.meta{margin:10px 0;font-size:13px;color:#94a3b8;line-height:1.4; text-align: center;}
+
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.actions form{margin:0}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 12px;
+  border-radius:12px;
+  border:1px solid transparent;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  text-decoration:none;
+  user-select:none;
+}
+
+.btn-primary{background:#2563eb;color:#ffffff}
+.btn-primary:hover{background:#1d4ed8}
+
+.btn-danger{background:#dc2626;color:#ffffff}
+.btn-danger:hover{background:#b91c1c}
+
+.btn-outline{background:transparent;border-color:#334155;color:#e5e7eb}
+.btn-outline:hover{background:#111827}
+
+.form{margin-top:6px}
+.form-group{margin-bottom:12px}
+label{display:block;font-weight:700;color:#f3f4f6;margin-bottom:6px}
+
+.input,.textarea{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#0b1220;
+  color:#e5e7eb;
+  outline:none;
+}
+.textarea{resize:vertical;min-height:160px}
+.input:focus,.textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #1e3a8a}
+
+.field-error{margin-top:6px;font-size:13px;color:#fca5a5}
+
+.img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px;
+  border:1px solid #1f2937;
+}
+.img-cover-sm{max-height:220px;object-fit:cover}
+.img-cover-md{max-height:320px;object-fit:cover}
+.img-cover-lg{max-height:360px;object-fit:cover}
+
+.post-content{white-space:pre-wrap;margin: 15 0}
+
+.post-header{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:0 0 6px;
+}
+.post-title{margin:0}
+.post-date{font-size:13px;color:#94a3b8;white-space:nowrap}

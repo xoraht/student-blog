@@ -19,12 +19,27 @@
 </header>
 
 <main class="container">
-    <h1>Witaj w Student Blog</h1>
-    <p>Dzisiejsza data: <strong th:text="${today}">2026-03-14</strong></p>
-
+    <h1 class="page-title">Witaj na Student Blog</h1>
+    <p class="meta">
+        Dzisiaj jest <strong th:text="${today}">2026-03-14</strong>.
+    </p>
     <section class="card">
-        <h2>Start projektu</h2>
-        <p>To jest strona główna. Następnie dodamy listę postów i CRUD.</p>
+        <p>
+            To mój prosty blog zrobiony w Spring Boot i Thymeleaf. W środku jest pełny CRUD postów, walidacja formularzy i zapis w PostgreSQL.
+            Do posta możesz dodać obrazek przez link.
+        </p>
+
+        <div class="actions">
+            <a class="btn btn-primary" th:href="@{/posts}">Przejdź do postów</a>
+            <a class="btn btn-outline" th:href="@{/posts/new}">Dodaj nowy post</a>
+        </div>
+    </section>
+
+    <section class="card section-gap">
+        <h2>Dlaczego ciemny motyw?</h2>
+        <p>
+            Bo w ciemnym tle treści blogowe i zdjęcia wyglądają lepiej, a całość jest czytelna i spójna.
+        </p>
     </section>
 </main>
 </body>

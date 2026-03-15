@@ -19,10 +19,11 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    private static String normalizeImageUrl(String url) {
+    // Proste: jeśli user zostawi puste, zapisujemy null
+    private String cleanUrl(String url) {
         if (url == null) return null;
-        String trimmed = url.trim();
-        return trimmed.isEmpty() ? null : trimmed;
+        url = url.trim();
+        return url.isEmpty() ? null : url;
     }
 
     @GetMapping
@@ -54,13 +55,12 @@ public class PostController {
             return "posts/new";
         }
 
-        Post post = new Post()
-                .setTitle(form.getTitle())
-                .setContent(form.getContent())
-                .setImageUrl(normalizeImageUrl(form.getImageUrl()));
+        Post post = new Post();
+        post.setTitle(form.getTitle());
+        post.setContent(form.getContent());
+        post.setImageUrl(cleanUrl(form.getImageUrl()));
 
         postRepository.save(post);
-
         return "redirect:/posts";
     }
 
@@ -101,9 +101,9 @@ public class PostController {
 
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
-        post.setImageUrl(normalizeImageUrl(form.getImageUrl()));
-        postRepository.save(post); // @PreUpdate ustawi updatedAt (jeśli masz)
+        post.setImageUrl(cleanUrl(form.getImageUrl()));
 
+        postRepository.save(post);
         return "redirect:/posts/" + post.getId();
     }
 

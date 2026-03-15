@@ -13,7 +13,6 @@ public class PostForm {
     @Size(min = 10, max = 10000)
     private String content;
 
-    // NOWE POLE (dajemy max długość jak w encji)
     @Size(max = 500)
     private String imageUrl;
 

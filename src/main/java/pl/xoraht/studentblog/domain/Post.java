@@ -19,7 +19,6 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    // NOWE POLE: URL obrazka
     @Column(length = 500)
     private String imageUrl;
 

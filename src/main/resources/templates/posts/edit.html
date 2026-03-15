@@ -21,36 +21,37 @@
 <main class="container">
     <a class="btn btn-outline" th:href="@{/posts/{id}(id=${post.id})}">← Wróć</a>
 
-    <h1 style="margin-top:12px;">Edytuj post</h1>
+    <h1 class="page-title">Edytuj post</h1>
 
     <section class="card">
-        <form th:action="@{/posts/{id}(id=${post.id})}" th:object="${postForm}" method="post">
+        <div class="meta" th:if="${post.updatedAt != null}">
+            Ostatnia aktualizacja:
+            <span th:text="${#temporals.format(post.updatedAt, 'HH:mm dd.MM.yyyy')}">18:11 14.03.2026</span>
+        </div>
 
-            <div style="margin-bottom:12px;">
-                <label>Tytuł</label><br/>
-                <input type="text" th:field="*{title}" style="width:100%; padding:8px;" />
-                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:#b91c1c;"></div>
+        <form class="form" th:action="@{/posts/{id}(id=${post.id})}" th:object="${postForm}" method="post">
+            <div class="form-group">
+                <label>Tytuł</label>
+                <input class="input" type="text" th:field="*{title}" />
+                <div class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
             </div>
 
-            <div style="margin-bottom:12px;">
-                <label>Obrazek (URL)</label><br/>
-                <input type="text" th:field="*{imageUrl}" placeholder="https://..." style="width:100%; padding:8px;" />
+            <div class="form-group">
+                <label>Obrazek (URL)</label>
+                <input class="input" type="text" th:field="*{imageUrl}" placeholder="https://..." />
             </div>
 
-            <!-- Podgląd obrazka (opcjonalnie) -->
-            <div th:if="${postForm.imageUrl != null and !#strings.isEmpty(postForm.imageUrl)}"
-                 style="margin-bottom:12px;">
-                <img th:src="${postForm.imageUrl}" alt="Podgląd obrazka"
-                     style="width:100%; max-height:320px; object-fit:cover; border-radius:10px;" />
+            <div class="form-group" th:if="${postForm.imageUrl != null and !#strings.isEmpty(postForm.imageUrl)}">
+                <img class="img img-cover-md" th:src="${postForm.imageUrl}" alt="Podgląd obrazka" />
             </div>
 
-            <div style="margin-bottom:12px;">
-                <label>Treść</label><br/>
-                <textarea th:field="*{content}" rows="10" style="width:100%; padding:8px;"></textarea>
-                <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:#b91c1c;"></div>
+            <div class="form-group">
+                <label>Treść</label>
+                <textarea class="textarea" th:field="*{content}" rows="10"></textarea>
+                <div class="field-error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
             </div>
 
-            <button type="submit" style="padding:10px 14px;">Zapisz zmiany</button>
+            <button class="btn btn-primary" type="submit">Zapisz zmiany</button>
         </form>
     </section>
 </main>
