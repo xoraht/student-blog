@@ -19,7 +19,6 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    // Proste: jeśli user zostawi puste, zapisujemy null
     private String cleanUrl(String url) {
         if (url == null) return null;
         url = url.trim();
@@ -64,7 +63,6 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    // --- EDYCJA ---
 
     @GetMapping("/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
@@ -106,8 +104,6 @@ public class PostController {
         postRepository.save(post);
         return "redirect:/posts/" + post.getId();
     }
-
-    // --- USUWANIE ---
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable long id) {
